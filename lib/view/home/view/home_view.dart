@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery/core/components/container/round_edge_container.dart';
 import 'package:food_delivery/core/components/search_bar/search_bar.dart';
 import 'package:food_delivery/core/components/tab_bar/custom_tab_bar.dart';
+import 'package:food_delivery/core/constants/enum/food_types_enum.dart';
 import 'package:food_delivery/core/extension/context_extension.dart';
+import 'package:food_delivery/product/widgets/card/product_card.dart';
 import 'package:food_delivery/product/widgets/column/two_text_columns.dart';
 import 'package:food_delivery/view/home/cubit/home_cubit.dart';
 import 'package:food_delivery/view/home/model/food_types_model.dart';
@@ -11,7 +13,9 @@ import 'package:food_delivery/view/home/service/food_service.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key key}) : super(key: key);
+
   final _searchTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +31,7 @@ class HomeView extends StatelessWidget {
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());
+          _searchTextController.clear();
         },
         child: Padding(
           padding: context.paddingLowSymetric,
@@ -61,47 +66,29 @@ class HomeView extends StatelessWidget {
                         Expanded(
                           flex: 6,
                           child: ListView.builder(
-                              physics: BouncingScrollPhysics(),
-                              itemCount: 5,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                // TODO: get food burada olacak FoodTypes.instance.foodList[index] seklinde
-                                return Row(
-                                  children: [
-                                    SizedBox(
-                                      width: context.customWidthValue(0.5),
-                                      child: RoundEdgeContainer(
-                                        child: Padding(
-                                          padding:
-                                              context.paddingUltraLowSymetric,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              SizedBox(
-                                                width: 100,
-                                                height: 100,
-                                                child: CircleAvatar(
-                                                  backgroundColor: Colors.black,
-                                                ),
-                                              ),
-                                              Spacer(
-                                                flex: 1,
-                                              ),
-                                              TwoTextColumns(
-                                                  foodName: 'Veggie tomato mix',
-                                                  foodPrice: 200.0),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: context.customWidthValue(0.05),
-                                    ),
-                                  ],
-                                );
-                              }),
+                            physics: BouncingScrollPhysics(),
+                            itemCount: state.foodList != null
+                                ? state.foodList.length
+                                : 0,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) => Row(
+                              children: [
+                                SizedBox(
+                                  width: context.customWidthValue(0.5),
+                                  child: ProductCard(
+                                    imagePath:
+                                        state.foodList[index].imagePaths[0],
+                                    foodName: state.foodList[index].foodName,
+                                    foodPrice:
+                                        state.foodList[index].price.toDouble(),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: context.customWidthValue(0.05),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         Spacer(
                           flex: 2,
@@ -111,7 +98,7 @@ class HomeView extends StatelessWidget {
                   },
                 ),
               ),
-            ],
+            ],   
           ),
         ),
       ),
@@ -146,7 +133,8 @@ class HomeView extends StatelessWidget {
   }
 
   Future<void> temp() async {
-    final response = await FoodService.instance.getFoods('snacks', 'name');
+    final response =
+        await FoodService.instance.getFoods('Snack', sortBy: 'name');
     // TODO: veriyi cekebilmek icin cubitti kullan
     //await FoodService.instance.likeTheFood(id, isItLiked)
   }

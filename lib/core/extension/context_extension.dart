@@ -14,6 +14,8 @@ extension MediaQueryExtension on BuildContext {
   double get lowHeightValue => height * 0.1;
 
   double get lowWidthValue => width * 0.1;
+  
+  double get normalHightValue => height * 0.2;
 
   double get highHeightValue => height * 0.4;
 

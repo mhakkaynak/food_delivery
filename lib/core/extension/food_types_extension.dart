@@ -4,11 +4,11 @@ extension FoodTypesExtension on FoodTypes {
   String get rawValue {
     switch (this) {
       case FoodTypes.MAIN_COURSES:
-        return 'Main Courses';
+        return 'Main Course';
       case FoodTypes.DRINKS:
-        return 'Drinks';
+        return 'Drink';
       case FoodTypes.SNACKS:
-        return 'Snacks';
+        return 'Snack';
       case FoodTypes.SAUCE:
         return 'Sauce';
       default:

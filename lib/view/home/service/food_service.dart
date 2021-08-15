@@ -10,10 +10,11 @@ class FoodService implements IFoodService {
   final _foodUrl = '/food';
 
   @override
-  Future<List<FoodModel>> getFoods(String foodType, String sortBy) async {
+  Future<List<FoodModel>> getFoods(String foodType, {String sortBy}) async {
     final List<FoodModel> foodList = await NetworkManager.instance
         .fetch<FoodModel>(
-            '$_foodUrl/food-list/$foodType?sortBy=$sortBy', FoodModel.empty());
+            '$_foodUrl/food-list/$foodType?sortBy=${sortBy ?? 'name'}',
+            FoodModel.empty());
     return foodList;
   }
 
