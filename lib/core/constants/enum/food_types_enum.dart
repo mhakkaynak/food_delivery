@@ -1,0 +1,1 @@
+enum FoodTypes { MAIN_COURSES, DRINKS, SNACKS, SAUCE }
