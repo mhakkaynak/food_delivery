@@ -10,21 +10,21 @@ class FoodService implements IFoodService {
   final _foodUrl = '/food';
 
   @override
-  Future<List<FoodModel>> getFoods(String foodType, {String sortBy}) async {
-    final List<FoodModel> foodList = await NetworkManager.instance
-        .fetch<FoodModel>(
-            '$_foodUrl/food-list/$foodType?sortBy=${sortBy ?? 'name'}',
-            FoodModel.empty());
-    return foodList;
-  }
+  Future<List<FoodModel>> getFoods(String foodType, {String sortBy}) async =>
+      _getFoodList('$_foodUrl/food-list/$foodType?sortBy=${sortBy ?? 'name'}');
 
   @override
-  Future<void> likeTheFood(String id, bool isItLiked) async {
-    await NetworkManager.instance.fetch<FoodModel>(
-        // TODO: will be change
-        '/food/food-list/snacks?sortBy=name&sortType=ascending',
-        FoodModel.empty());
+  Future<List<FoodModel>> getFoodsInSearchResult(String keyword) async =>
+      await _getFoodList('$_foodUrl/search-food/$keyword');
+
+  @override
+  Future<void> likeTheFood(String id, bool isItLiked) {
+    // TODO: implement likeTheFood
+    throw UnimplementedError();
   }
+
+  Future<List<FoodModel>> _getFoodList(String path) async =>
+      await NetworkManager.instance.fetch(path, FoodModel.empty());
 
   static FoodService get instance {
     _instance ??= FoodService._init();

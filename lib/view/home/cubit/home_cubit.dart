@@ -7,7 +7,11 @@ import 'package:food_delivery/view/home/service/food_service.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeState(tabBarIndex: 0, foodList: [])) {
+  HomeCubit()
+      : super(HomeState(
+          tabBarIndex: 0,
+          foodList: [],
+        )) {
     _getFoods();
   }
 
@@ -16,8 +20,12 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeState(tabBarIndex: index));
   }
 
+  Future<void> getFoodsInSearchResult(String keyword) async {
+    emit(HomeState(
+        foodList: await FoodService.instance.getFoodsInSearchResult(keyword)));
+  }
+
   Future<void> _getFoods({int index}) async {
-    print('here');
     emit(HomeState(
         foodList: await FoodService.instance
             .getFoods(FoodTypesModel.instance.foodTypesList[index ?? 0])));
