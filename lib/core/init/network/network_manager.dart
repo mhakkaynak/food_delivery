@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:food_delivery/core/base/model/base_model.dart';
-import 'package:food_delivery/core/init/network/base_dio_service.dart';
+import '../../base/model/base_model.dart';
+import 'base_dio_service.dart';
 
 class NetworkManager extends ICoreDio {
   static NetworkManager _instance;

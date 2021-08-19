@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:food_delivery/core/base/model/base_model.dart';
-import 'package:food_delivery/view/authentication/entry/model/user_model.dart';
+import '../../base/model/base_model.dart';
+import '../../../view/authentication/entry/model/user_model.dart';
 import 'package:path/path.dart';
-import 'package:food_delivery/core/init/database/base_database_manager.dart';
+import 'base_database_manager.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbManager extends IDbManager {

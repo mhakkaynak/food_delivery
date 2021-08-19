@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:food_delivery/core/base/model/base_model.dart';
+
+import '../../base/model/base_model.dart';
 
 abstract class ICoreDio {
   Dio dio;

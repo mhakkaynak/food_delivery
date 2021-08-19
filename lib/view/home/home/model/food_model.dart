@@ -1,4 +1,5 @@
-import 'package:food_delivery/core/base/model/base_model.dart';
+
+import '../../../../core/base/model/base_model.dart';
 
 class FoodModel extends BaseModel {
   String id;

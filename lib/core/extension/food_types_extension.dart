@@ -1,4 +1,4 @@
-import 'package:food_delivery/core/constants/enum/food_types_enum.dart';
+import '../constants/enum/food_types_enum.dart';
 
 extension FoodTypesExtension on FoodTypes {
   String get rawValue {

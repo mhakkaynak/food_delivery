@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_delivery/core/constants/navigation/navigation_constant.dart';
-import 'package:food_delivery/core/extension/context_extension.dart';
-import 'package:food_delivery/core/init/navigation/navigation_manager.dart';
-import 'package:food_delivery/product/constants/image_path.dart';
-import 'package:food_delivery/product/widgets/button/elevated_text_button.dart';
+
+import '../../../core/constants/navigation/navigation_constant.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../core/init/navigation/navigation_manager.dart';
+import '../../../product/constants/image_path.dart';
+import '../../../product/widgets/button/elevated_text_button.dart';
 
 class ErrorView extends StatelessWidget {
   const ErrorView({Key key}) : super(key: key);

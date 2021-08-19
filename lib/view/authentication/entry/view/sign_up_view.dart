@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery/view/authentication/entry/cubit/sign_up/sign_up_cubit.dart';
-import 'package:food_delivery/view/authentication/entry/model/user_model.dart';
+
 import '../../../../product/widgets/text/custom_text_form_field.dart';
+import '../cubit/sign_up/sign_up_cubit.dart';
+import '../model/user_model.dart';
 
 class SignUpView extends StatefulWidget {
   SignUpView({Key key}) : super(key: key);

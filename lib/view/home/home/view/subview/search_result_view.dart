@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/core/components/container/round_edge_container.dart';
-import 'package:food_delivery/core/extension/context_extension.dart';
-import 'package:food_delivery/product/widgets/card/product_card.dart';
-import 'package:food_delivery/product/widgets/column/two_text_columns.dart';
-import 'package:food_delivery/view/home/model/food_model.dart';
+import '../../../../../core/extension/context_extension.dart';
+import '../../../../../product/widgets/card/product_card.dart';
+import '../../model/food_model.dart';
 
 class SearchResultView extends StatelessWidget {
   final List<FoodModel> foodList;
   const SearchResultView({Key key, @required this.foodList}) : super(key: key);
 
+  // TODO: will be page
   @override
   Widget build(BuildContext context) {
     return GridView.count(

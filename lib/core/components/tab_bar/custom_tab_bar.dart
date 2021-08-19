@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/view/home/cubit/home_cubit.dart';
 
 class CustomTabBar extends StatefulWidget {
   CustomTabBar(

@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/view/authentication/entry/model/user_model.dart';
-import 'package:food_delivery/view/authentication/entry/service/entry_service.dart';
 import 'package:meta/meta.dart';
+
+import '../../model/user_model.dart';
+import '../../service/entry_service.dart';
 
 part 'sign_up_state.dart';
 

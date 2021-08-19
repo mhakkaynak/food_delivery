@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/core/extension/context_extension.dart';
+
+import '../../../core/extension/context_extension.dart';
 
 class TwoTextColumns extends StatelessWidget {
   const TwoTextColumns(

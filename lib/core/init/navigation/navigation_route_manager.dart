@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/view/errors/view/error_view.dart';
-import 'package:food_delivery/view/home/view/home_view.dart';
-
+import '../../../view/home/home/view/home_view.dart';
+import '../../../view/home/order/view/order_view.dart';
+import '../../../view/errors/view/error_view.dart';
 import '../../../view/authentication/entry/view/entry_view.dart';
 import '../../../view/authentication/spalsh/view/spalsh_view.dart';
 import '../../constants/navigation/navigation_constant.dart';
@@ -27,6 +27,8 @@ class NavigationRouteManager {
         return _navigationToDefault(ErrorView(), args);
       case NavigationConstant.HOME:
         return _navigationToDefault(HomeView(), args);
+      case NavigationConstant.ORDER:
+        return _navigationToDefault(OrderView(), args);
       default:
         return _navigationToDefault(ErrorView(), args);
     }

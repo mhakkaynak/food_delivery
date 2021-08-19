@@ -1,7 +1,7 @@
-import 'package:food_delivery/core/init/database/database_manager.dart';
-import 'package:food_delivery/core/init/network/network_manager.dart';
-import 'package:food_delivery/view/authentication/entry/model/user_model.dart';
-import 'package:food_delivery/view/authentication/entry/service/base_entry_service.dart';
+import '../../../../core/init/database/database_manager.dart';
+import '../../../../core/init/network/network_manager.dart';
+import '../model/user_model.dart';
+import 'base_entry_service.dart';
 
 class EntryService extends IEntryService {
   EntryService._init();

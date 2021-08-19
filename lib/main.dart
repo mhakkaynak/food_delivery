@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery/view/authentication/entry/cubit/sign_up/sign_up_cubit.dart';
-import 'package:food_delivery/view/home/cubit/home_cubit.dart';
 
 import 'core/init/navigation/navigation_manager.dart';
 import 'core/init/navigation/navigation_route_manager.dart';
 import 'core/init/theme/app_theme_ligth.dart';
+import 'view/authentication/entry/cubit/sign_up/sign_up_cubit.dart';
+import 'view/home/home/cubit/home_cubit.dart';
 
 void main() {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<SignUpCubit>(create: (context) => SignUpCubit()),
       BlocProvider<HomeCubit>(create: (context) => HomeCubit()),
-      
     ],
     child: MyApp(),
   ));

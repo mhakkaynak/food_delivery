@@ -16,13 +16,13 @@ class NavigationManager implements BaseNavigationMAnager {
 
   @override
   Future<void> naigationTopPageClear(String path, {Object args}) async {
-    await navigationKey.currentState.pushNamed(path, arguments: args);
+    await navigationKey.currentState
+        .pushNamedAndRemoveUntil(path, _removeOldPage, arguments: args);
   }
 
   @override
   Future<void> navigationToPage(String path, {Object args}) async {
-    await navigationKey.currentState
-        .pushNamedAndRemoveUntil(path, _removeOldPage, arguments: args);
+    await navigationKey.currentState.pushNamed(path, arguments: args);
   }
 
   @override

@@ -1,8 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:food_delivery/view/home/model/food_model.dart';
-import 'package:food_delivery/view/home/model/food_types_model.dart';
-import 'package:food_delivery/view/home/service/food_service.dart';
+import '../../../../core/constants/navigation/navigation_constant.dart';
+import '../../../../core/init/navigation/navigation_manager.dart';
+
+import '../model/food_model.dart';
+import '../model/food_types_model.dart';
+import '../service/food_service.dart';
 
 part 'home_state.dart';
 
@@ -15,14 +18,27 @@ class HomeCubit extends Cubit<HomeState> {
     _getFoods();
   }
 
+  static HomeCubit _instance;
+
+  static HomeCubit get instance {
+    _instance ??= HomeCubit();
+    return _instance;
+  }
+
+  void goToOrderView() {
+    NavigationManager.instance.navigationToPage(NavigationConstant.ORDER);
+  }
+
   void changeTabBarIndex(int index) {
     _getFoods(index: index);
     emit(HomeState(tabBarIndex: index));
   }
 
   Future<void> getFoodsInSearchResult(String keyword) async {
-    emit(HomeState(
-        foodList: await FoodService.instance.getFoodsInSearchResult(keyword)));
+    if (keyword.isNotEmpty)
+      emit(HomeState(
+          foodList:
+              await FoodService.instance.getFoodsInSearchResult(keyword)));
   }
 
   Future<void> _getFoods({int index}) async {

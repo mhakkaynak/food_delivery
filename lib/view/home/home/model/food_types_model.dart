@@ -1,5 +1,5 @@
-import 'package:food_delivery/core/constants/enum/food_types_enum.dart';
-import 'package:food_delivery/core/extension/food_types_extension.dart';
+import '../../../../core/constants/enum/food_types_enum.dart';
+import '../../../../core/extension/food_types_extension.dart';
 
 class FoodTypesModel {
   FoodTypesModel._init();

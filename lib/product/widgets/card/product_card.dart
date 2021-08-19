@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/core/components/container/round_edge_container.dart';
-import 'package:food_delivery/core/extension/context_extension.dart';
-import 'package:food_delivery/product/widgets/column/two_text_columns.dart';
+
+import '../../../core/components/container/round_edge_container.dart';
+import '../../../core/extension/context_extension.dart';
+import '../column/two_text_columns.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard(

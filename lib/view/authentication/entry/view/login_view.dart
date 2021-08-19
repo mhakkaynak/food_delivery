@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/view/authentication/entry/model/user_model.dart';
-import 'package:food_delivery/view/authentication/entry/service/entry_service.dart';
+import '../model/user_model.dart';
+import '../service/entry_service.dart';
 import '../../../../core/extension/context_extension.dart';
 import '../../../../product/widgets/button/elevated_text_button.dart';
 import '../../../../product/widgets/text/custom_text_form_field.dart';
