@@ -13,11 +13,11 @@ class AppThemeLight extends AppTheme {
   }
 
   ThemeData get ligthTheme => ThemeData(
-    
         appBarTheme: AppBarTheme(
             backgroundColor: _appColorScheme.background,
             elevation: 0,
             iconTheme: IconThemeData(color: _appColorScheme.secondary)),
+        backgroundColor: _appColorScheme.background,
         colorScheme: _appColorScheme,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
@@ -40,7 +40,6 @@ class AppThemeLight extends AppTheme {
                 borderRadius: BorderRadius.all(Radius.circular(32)),
                 borderSide: BorderSide(color: _appColorScheme.onBackground))),
         scaffoldBackgroundColor: _appColorScheme.background,
-        
         textTheme: TextTheme(
           headline4: TextStyle(
               fontSize: 34,
@@ -75,7 +74,7 @@ class AppThemeLight extends AppTheme {
         onPrimary: Colors.white,
         onSecondary: Colors.white24,
         onSurface: Colors.black54,
-        onBackground: Color(0xffefeeee),
+        onBackground: Color(0xfff9f9f9),
         onError: Colors.white,
         brightness: Brightness.light,
       );

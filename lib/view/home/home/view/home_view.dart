@@ -8,6 +8,7 @@ import '../../../../product/widgets/card/product_card.dart';
 import '../cubit/home_cubit.dart';
 import '../model/food_types_model.dart';
 
+// TODO:  onTap for product card
 class HomeView extends StatelessWidget {
   HomeView({Key key}) : super(key: key);
 
@@ -16,6 +17,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _searchTextController.clear();
+    HomeCubit();
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
@@ -76,9 +79,13 @@ class HomeView extends StatelessWidget {
       );
 
   AppBar get _buildAppBar => AppBar(actions: [
-        IconButton(
-          onPressed: HomeCubit.instance.goToOrderView,
-          icon: (Icon(Icons.shopping_cart_sharp)),
+        BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, state) {
+            return IconButton(
+              onPressed: context.read<HomeCubit>().goToOrderView,
+              icon: (Icon(Icons.shopping_cart_sharp)),
+            );
+          },
         )
       ]);
 
@@ -146,7 +153,10 @@ class HomeView extends StatelessWidget {
   SearchBar _buildSearchBar(BuildContext context) => SearchBar(
         textStyle: context.currentTheme.textTheme.bodyText1,
         searchTextController: _searchTextController,
-        onSubmitted: context.read<HomeCubit>().getFoodsInSearchResult,
+        onSubmitted: (value) {
+          context.read<HomeCubit>().getFoodsInSearchResult(value);
+          context.read<HomeCubit>().goToSearchView();
+        },
       );
 
   void _exitSearchBar() {
