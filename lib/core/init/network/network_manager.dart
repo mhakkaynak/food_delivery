@@ -12,7 +12,7 @@ class NetworkManager extends ICoreDio {
 
   NetworkManager._init();
   @override
-  Future<List<BaseModel>> fetch<T extends BaseModel>(
+  Future<dynamic> fetch<T extends BaseModel>(
       String path, T model) async {
     try {
       final response = await dio.get(path);
@@ -24,13 +24,13 @@ class NetworkManager extends ICoreDio {
                 .map((e) => model.fromObject(e))
                 .cast<T>()
                 .toList();
-          else if (responseBody is Map)
+          else if (responseBody is Map) {
             return model.fromObject(responseBody);
-          else
+          } else
             return responseBody;
           break;
         default:
-          // TODO: 
+          // TODO: error
           break;
       }
     } catch (e) {

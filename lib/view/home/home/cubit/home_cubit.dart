@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:food_delivery/view/home/home/service/food_service/food_service.dart';
 
 import '../../../../core/constants/navigation/navigation_constant.dart';
 import '../../../../core/init/navigation/navigation_manager.dart';
-import '../model/food_model.dart';
+import '../../_model/food_model.dart';
 import '../model/food_types_model.dart';
-import '../service/food_service.dart';
 
 part 'home_state.dart';
 
@@ -33,6 +33,11 @@ class HomeCubit extends Cubit<HomeState> {
           foodList:
               await FoodService.instance.getFoodsInSearchResult(keyword)));
     }
+  }
+
+  void goToProductView(FoodModel foodModel) {
+    NavigationManager.instance
+        .navigationToPage(NavigationConstant.PRODUCT, args: foodModel);
   }
 
   void goToBackView() {

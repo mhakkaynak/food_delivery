@@ -26,20 +26,20 @@ class DbManager extends IDbManager {
   }
 
   @override
-  Future<int> delete(String id) async {
+  Future<int> deleteUser(String id) async {
     final db = await this.db;
     return await db.rawDelete('DELETE FROM user WHERE _id=?', [id]);
   }
 
   @override
-  Future<UserModel> fetch<T extends BaseModel>(T model) async {
+  Future<UserModel> fetchUser<T extends BaseModel>(T model) async {
     final db = await this.db;
     final result = await db.query('user');
     return model.fromObject(result[0]);
   }
 
   @override
-  Future<int> insert(UserModel model) async {
+  Future<int> insertUser(UserModel model) async {
     final db = await this.db;
     return await db.rawInsert(
         'INSERT INTO user(_id, name, surname, email, password) '
@@ -54,7 +54,7 @@ class DbManager extends IDbManager {
   }
 
   @override
-  Future<int> update(UserModel model) async {
+  Future<int> updateUser(UserModel model) async {
     final db = await this.db;
     return await db.rawUpdate(
         'UPDATE user SET name = ?, surname = ?, email = ?, '

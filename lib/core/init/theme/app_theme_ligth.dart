@@ -19,6 +19,7 @@ class AppThemeLight extends AppTheme {
             iconTheme: IconThemeData(color: _appColorScheme.secondary)),
         backgroundColor: _appColorScheme.background,
         colorScheme: _appColorScheme,
+        primaryColor: _appColorScheme.primary,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(

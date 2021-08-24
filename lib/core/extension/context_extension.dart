@@ -14,8 +14,10 @@ extension MediaQueryExtension on BuildContext {
   double get lowHeightValue => height * 0.1;
 
   double get lowWidthValue => width * 0.1;
-  
+
   double get normalHightValue => height * 0.2;
+
+  double get normalWidthValue => height * 0.2;
 
   double get highHeightValue => height * 0.4;
 
@@ -31,8 +33,8 @@ extension PaddingExtension on BuildContext {
       horizontal: lowWidthValue / 2,
       vertical: lowHeightValue / 2); // TODO: height silinebilinir
 
-  EdgeInsets get paddingLowSymetric =>
-      EdgeInsets.symmetric(horizontal: lowWidthValue);
+  EdgeInsets get paddingLowSymetric => EdgeInsets.symmetric(
+      horizontal: lowWidthValue, vertical: customHeigthValue(0.03));
 
   EdgeInsets get paddingLowBottom =>
       EdgeInsets.only(bottom: mediaQuery.viewInsets.bottom * 0.5);

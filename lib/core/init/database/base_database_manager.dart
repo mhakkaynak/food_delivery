@@ -2,11 +2,11 @@ import '../../../view/authentication/entry/model/user_model.dart';
 import '../../base/model/base_model.dart';
 
 abstract class IDbManager {
-  Future<int> delete(String id);
+  Future<int> deleteUser(String id);
 
-  Future<UserModel> fetch<T extends BaseModel>(T model);
+  Future<UserModel> fetchUser<T extends BaseModel>(T model);
 
-  Future<int> insert(UserModel model);
+  Future<int> insertUser(UserModel model);
 
-  Future<int> update(UserModel model);
+  Future<int> updateUser(UserModel model);
 }

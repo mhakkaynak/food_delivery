@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/view/home/home/view/subview/search_view.dart';
+import 'package:food_delivery/view/home/product/view/product_view.dart';
 import '../../../view/home/home/view/home_view.dart';
 import '../../../view/home/order/view/order_view.dart';
 import '../../../view/errors/view/error_view.dart';
@@ -32,6 +33,8 @@ class NavigationRouteManager {
         return _navigationToDefault(OrderView(), args);
       case NavigationConstant.SEARCH:
         return _navigationToDefault(SearchView(), args);
+      case NavigationConstant.PRODUCT:
+        return _navigationToDefault(ProductView(), args);
       default:
         return _navigationToDefault(ErrorView(), args);
     }

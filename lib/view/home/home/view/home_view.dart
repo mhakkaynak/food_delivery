@@ -70,7 +70,7 @@ class HomeView extends StatelessWidget {
           ),
           Expanded(
             flex: 16,
-            child: _buildProductCardFromListView(state),
+            child: _buildProductCardFromListView(context, state),
           ),
           Spacer(
             flex: 4,
@@ -119,15 +119,24 @@ class HomeView extends StatelessWidget {
         },
       );
 
-  ListView _buildProductCardFromListView(HomeState state) => ListView.builder(
+  ListView _buildProductCardFromListView(
+          BuildContext context, HomeState state) =>
+      ListView.builder(
         physics: BouncingScrollPhysics(),
         itemCount: state.foodList != null ? state.foodList.length : 0,
         scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => Row(
+        itemBuilder: (_, index) => Row(
           children: [
             SizedBox(
               width: context.customWidthValue(0.5),
-              child: _buildProductCard(state, index),
+              child: GestureDetector(
+                  onTap: () {
+                    context
+                        .read<HomeCubit>()
+                        .goToProductView(state.foodList[index]);
+                        
+                  },
+                  child: _buildProductCard(state, index)),
             ),
             SizedBox(
               width: context.customWidthValue(0.05),

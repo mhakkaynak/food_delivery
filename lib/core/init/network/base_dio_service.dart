@@ -14,7 +14,7 @@ abstract class ICoreDio {
     dio = Dio(BaseOptions(baseUrl: baseUrl));
   }
 
-  Future<List<BaseModel>> fetch<T extends BaseModel>(String path, T model);
+  Future<dynamic> fetch<T extends BaseModel>(String path, T model);
 
   Future<dynamic> post<T extends BaseModel>(String path, T model);
 

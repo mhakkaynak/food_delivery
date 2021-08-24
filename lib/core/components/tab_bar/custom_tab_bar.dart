@@ -17,26 +17,13 @@ class CustomTabBar extends StatefulWidget {
 
   @override
   _CustomTabBarState createState() => _CustomTabBarState(
-      tabs: tabs,
-      selectedTextStyle: selectedTextStyle,
-      unSelectedTextStyle: unSelectedTextStyle,
-      tabColor: tabColor,
-      changeIndex: changeIndex);
+   );
 }
 
 class _CustomTabBarState extends State<CustomTabBar> {
-  final List<String> tabs;
-  final TextStyle selectedTextStyle;
-  final TextStyle unSelectedTextStyle;
-  final Color tabColor;
-  final Function changeIndex;
+
   var _tabBarIndex = 0;
-  _CustomTabBarState(
-      {@required this.changeIndex,
-      @required this.tabs,
-      @required this.selectedTextStyle,
-      @required this.unSelectedTextStyle,
-      @required this.tabColor});
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -53,16 +40,16 @@ class _CustomTabBarState extends State<CustomTabBar> {
           ),
         );
       },
-      itemCount: tabs.length,
+      itemCount: widget.tabs.length,
     );
   }
 
   Column _buildColumn(int index) => Column(
         children: [
           Text(
-            tabs[index],
+            widget.tabs[index],
             style:
-                _indexControl(index) ? selectedTextStyle : unSelectedTextStyle,
+                _indexControl(index) ? widget.selectedTextStyle : widget.unSelectedTextStyle,
           ),
           SizedBox(
             height: 8,
@@ -76,7 +63,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
 
   Container get _buildContainer => Container(
         decoration: BoxDecoration(
-          color: tabColor,
+          color: widget.tabColor,
           borderRadius: BorderRadius.circular(12),
         ),
         height: 4,
@@ -87,7 +74,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
     setState(() {
       _tabBarIndex = index;
     });
-    changeIndex(index);
+    widget.changeIndex(index);
   }
 
   bool _indexControl(int index) => _tabBarIndex == index;

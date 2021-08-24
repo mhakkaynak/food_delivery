@@ -26,7 +26,7 @@ class _SpalshViewState extends State<SpalshView> {
 
   Future<void> getData() async {
     final db = DbManager();
-    await db.fetch(UserModel.empty());
+    await db.fetchUser(UserModel.empty());
     NavigationManager.instance
         .navigationToPage(NavigationConstant.LOGIN); // TODO will be deleted
   }

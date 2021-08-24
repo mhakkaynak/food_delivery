@@ -17,7 +17,7 @@ class EntryService extends IEntryService {
           await NetworkManager.instance.post(_authURl + '/login', user);
       if (response != null) {
         UserModel loggedInUser = await user.fromObject(response.data);
-        final result = DbManager().insert(loggedInUser);
+        final result = DbManager().insertUser(loggedInUser);
         print('result:' + result.toString());
         // TODO fetch ile kontrol et
         // TODO db de kayit islemini yap

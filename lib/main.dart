@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery/view/home/product/cubit/product_cubit.dart';
 
 import 'core/init/navigation/navigation_manager.dart';
 import 'core/init/navigation/navigation_route_manager.dart';
@@ -12,6 +13,7 @@ void main() {
     providers: [
       BlocProvider<SignUpCubit>(create: (context) => SignUpCubit()),
       BlocProvider<HomeCubit>(create: (context) => HomeCubit()),
+      BlocProvider<ProductCubit>(create: (context) => ProductCubit()),
     ],
     child: MyApp(),
   ));

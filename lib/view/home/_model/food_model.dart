@@ -1,5 +1,5 @@
 
-import '../../../../core/base/model/base_model.dart';
+import '../../../core/base/model/base_model.dart';
 
 class FoodModel extends BaseModel {
   String id;
@@ -8,11 +8,11 @@ class FoodModel extends BaseModel {
   String foodName;
   int numberOfLikes;
   int price;
-  String returnPoliciy;
+  String returnPolicy;
   String foodType;
 
   FoodModel(this.deliveryInfo, this.foodName, this.numberOfLikes, this.price,
-      this.returnPoliciy, this.foodType);
+      this.returnPolicy, this.foodType);
 
   FoodModel.empty();
 
@@ -23,7 +23,7 @@ class FoodModel extends BaseModel {
     foodName = o['name'].toString();
     numberOfLikes = int.tryParse(o['numberOfLikes'].toString());
     price = int.tryParse(o['price'].toString());
-    returnPoliciy = o['returnPolicy'].toString();
+    returnPolicy = o['returnPolicy'].toString();
     foodType = o['foodType'];
   }
 
@@ -38,7 +38,7 @@ class FoodModel extends BaseModel {
         'name': this.foodName,
         'numberOfLikes': this.numberOfLikes.toString(),
         'price': this.price.toString(),
-        'returnPoliciy': this.returnPoliciy,
+        'returnPoliciy': this.returnPolicy,
         'foodType': this.foodType
       };
 

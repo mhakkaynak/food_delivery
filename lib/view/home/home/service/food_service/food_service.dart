@@ -1,5 +1,7 @@
-import '../../../../core/init/network/network_manager.dart';
-import '../model/food_model.dart';
+
+import 'package:food_delivery/core/init/network/network_manager.dart';
+import 'package:food_delivery/view/home/_model/food_model.dart';
+
 import 'base_food_service.dart';
 
 class FoodService implements IFoodService {
@@ -17,11 +19,6 @@ class FoodService implements IFoodService {
   Future<List<FoodModel>> getFoodsInSearchResult(String keyword) async =>
       await _getFoodList('$_foodUrl/search-food/$keyword');
 
-  @override
-  Future<void> likeTheFood(String id, bool isItLiked) {
-    // TODO: implement likeTheFood
-    throw UnimplementedError();
-  }
 
   Future<List<FoodModel>> _getFoodList(String path) async =>
       await NetworkManager.instance.fetch(path, FoodModel.empty());
