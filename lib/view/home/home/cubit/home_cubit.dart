@@ -19,7 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void goToOrderView() {
-    NavigationManager.instance.navigationToPage(NavigationConstant.ORDER);
+    NavigationManager.instance.navigationToPage(NavigationConstant.CART);
   }
 
   void changeTabBarIndex(int index) {
@@ -46,6 +46,8 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> _getFoods({int index}) async {
+    await FoodService.instance
+        .getFoods(FoodTypesModel.instance.foodTypesList[index ?? 0]);
     emit(HomeState(
         foodList: await FoodService.instance
             .getFoods(FoodTypesModel.instance.foodTypesList[index ?? 0])));

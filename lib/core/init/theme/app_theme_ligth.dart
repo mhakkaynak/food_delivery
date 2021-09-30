@@ -54,6 +54,7 @@ class AppThemeLight extends AppTheme {
           subtitle1: TextStyle(fontSize: 16, color: _appColorScheme.primary),
           subtitle2: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
           bodyText1: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          bodyText2: TextStyle(fontSize: 16),
         ),
         tabBarTheme: TabBarTheme(
           labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -68,7 +69,7 @@ class AppThemeLight extends AppTheme {
         primary: Color(0xfffa4a0c),
         primaryVariant: Colors.grey,
         secondary: Colors.black,
-        secondaryVariant: Color(0xffFA4A0C),
+        secondaryVariant: Color(0xffDF2C2C),
         surface: Color(0xff4a6572),
         background: Color(0xfff2f2f2),
         error: Colors.red,

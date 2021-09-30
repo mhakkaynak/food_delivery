@@ -1,145 +1,122 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery/core/components/text/text_with_single_child_scroll_view.dart';
+import 'package:food_delivery/product/widgets/column/two_text_columns.dart';
 
 import '../../../../core/components/button/custom_elevated_button.dart';
-import '../../../../core/components/color_dot/color_dot_list_view.dart';
+import '../../../../core/components/circle_avatar/scrolling_circle_avatar.dart';
 import '../../../../core/extension/context_extension.dart';
 import '../../_model/food_model.dart';
 import '../cubit/product_cubit.dart';
 
-class ProductView extends StatefulWidget {
-  ProductView({
-    Key key,
-  }) : super(key: key);
-  @override
-  _ProductViewState createState() => _ProductViewState();
-}
+// ignore: must_be_immutable
+class ProductView extends StatelessWidget {
+  ProductView({Key key}) : super(key: key);
 
-class _ProductViewState extends State<ProductView> {
   FoodModel food;
-  @override
-  Widget build(BuildContext context) {
-    food = ModalRoute.of(context).settings.arguments as FoodModel;
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          BlocBuilder<ProductCubit, ProductState>(
-            builder: (context, state) {
-              return IconButton(
-                onPressed: () {
-                  context.read<ProductCubit>().likeFood(food.id);
-                },
-                icon: true
-                    ? Icon(Icons.favorite_border_outlined)
-                    : Icon(
-                        Icons.favorite,
-                        color: context.currentTheme.primaryColor,
-                      ),
-              );
-            },
-          )
-        ],
-      ),
-      body: Padding(
-        padding: context.paddingLowSymetric,
-        child: Column(
-          children: [
-            Expanded(
-              child: _buildScrollingAvatar(context),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    food.foodName,
-                    style: context.currentTheme.textTheme.headline4,
-                  ),
-                  Text(
-                    '${food.price} \$\n',
-                    style: context.currentTheme.textTheme.headline6,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Delivery Info\n',
-                          style: context.currentTheme.textTheme.bodyText1,
-                        ),
-                        Expanded(
-                          child: SingleChildScrollView(
-                            child: Text(
-                              food.deliveryInfo,
-                              style: context.currentTheme.textTheme.bodyText2,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          '\nReturn Policy\n',
-                          style: context.currentTheme.textTheme.bodyText1,
-                        ),
-                        Expanded(
-                          child: SingleChildScrollView(
-                            child: Text(
-                              food.returnPolicy,
-                              style: context.currentTheme.textTheme.bodyText2,
-                            ),
-                          ),
-                        ),
-                        CustomElevatedButton(
-                          width: context.customWidthValue(0.8),
-                          height: context.customHeigthValue(0.06),
-                          onPressed: () {
-                            // TODO: odeme sayfsina gidecek
-                          },
-                          widget: Text('Add to cart'),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
+
+  Column _buildUnderBodyColumn(BuildContext context) {
+    return Column(
+      children: [
+        _buildTwoTextColumns(context),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildText('Delivery Info\n', context),
+              Expanded(
+                child: _buildTextWithSingleChildScrollView(
+                    food.deliveryInfo, context),
               ),
-            ),
-          ],
+              _buildText('\nReturn Policy\n', context),
+              Expanded(
+                child: _buildTextWithSingleChildScrollView(
+                    food.returnPolicy, context),
+              ),
+              _buildAddToCartButton(context)
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 
-  Widget _buildScrollingAvatar(BuildContext context) {
-    return BlocBuilder<ProductCubit, ProductState>(
-      builder: (context, state) {
-        return Column(
-          children: [
-            Expanded(
-              flex: 3,
-              child: PageView.builder(
-                physics: BouncingScrollPhysics(),
-                itemBuilder: (_, position) {
-                  context.read<ProductCubit>().changeIndex(position);
-                  return CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        food.imagePaths[state.index].replaceAll(' ', '')),
-                  );
-                },
-                itemCount: food.imagePaths.length,
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Align(
-                child: ColorDotListView(
-                  itemCount: food.imagePaths.length,
-                  primaryColor: context.currentTheme.colorScheme.primary,
-                  secondaryColor:
-                      context.currentTheme.colorScheme.primaryVariant,
-                  selectedIndex: state.index,
+  Text _buildText(String data, BuildContext context) {
+    return Text(
+      data,
+      style: context.currentTheme.textTheme.bodyText1,
+    );
+  }
+
+  CustomElevatedButton _buildAddToCartButton(BuildContext context) {
+    return CustomElevatedButton(
+      width: context.customWidthValue(0.8),
+      height: context.customHeigthValue(0.06),
+      onPressed: context.read<ProductCubit>().addCart,
+      widget: Text('Add to cart'),
+    );
+  }
+
+  TextWithSingleChildScrollView _buildTextWithSingleChildScrollView(
+      String data, BuildContext context) {
+    return TextWithSingleChildScrollView(
+        data: data, textStyle: context.currentTheme.textTheme.bodyText2);
+  }
+
+  TwoTextColumns _buildTwoTextColumns(BuildContext context) {
+    return TwoTextColumns(
+      foodName: food.foodName,
+      foodPrice: food.price.toDouble(),
+      textStyle1: context.currentTheme.textTheme.headline4,
+    );
+  }
+
+  AppBar _buildAppbar(BuildContext context, ProductState state) {
+    return AppBar(
+      actions: [
+        IconButton(
+          onPressed: context.read<ProductCubit>().likeFood,
+          icon: state.wasItLiked ?? false
+              ? Icon(
+                  Icons.favorite,
+                  color: context.currentTheme.primaryColor,
+                )
+              : Icon(Icons.favorite_border_outlined),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildScrollingCircleAvatar(BuildContext context) {
+    return ScrollingCircleAvatar(
+        imagePaths: food.imagePaths,
+        primaryColor: context.currentTheme.colorScheme.primary,
+        secondaryColor: context.currentTheme.colorScheme.primaryVariant);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    food = ModalRoute.of(context).settings.arguments as FoodModel;
+    return BlocProvider(
+      create: (context) => ProductCubit(foodId: food.id),
+      child: BlocBuilder<ProductCubit, ProductState>(builder: (context, state) {
+        return Scaffold(
+          appBar: _buildAppbar(context, state),
+          body: Padding(
+            padding: context.paddingLowSymetric,
+            child: Column(
+              children: [
+                Expanded(
+                  child: _buildScrollingCircleAvatar(context),
                 ),
-              ),
+                Expanded(
+                  child: _buildUnderBodyColumn(context),
+                ),
+              ],
             ),
-          ],
+          ),
         );
-      },
+      }),
     );
   }
 }

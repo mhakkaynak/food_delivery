@@ -1,21 +1,35 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:food_delivery/core/init/database/database_manager.dart';
-import 'package:food_delivery/core/init/network/network_manager.dart';
-import 'package:food_delivery/view/home/_model/food_model.dart';
-
+import 'package:food_delivery/core/constants/navigation/navigation_constant.dart';
+import 'package:food_delivery/core/init/navigation/navigation_manager.dart';
+import 'package:food_delivery/view/home/product/service/product_service.dart';
 
 part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
-  ProductCubit() : super(ProductState(index: 0));
-
-  void changeIndex(int index) {
-    emit(ProductState(index: index));
+  ProductCubit({this.foodId}) : super(ProductState(wasItLiked: false)) {
+    _init();
   }
 
-  Future<void> likeFood(String id) async {
-    await NetworkManager.instance
-        .fetch('/food/like-counter/$id?increment=true', FoodModel.empty());
+  final String foodId;
+
+  Future<void> _init() async {
+    final wasItLiked = await ProductService.instance.wasItLiked(foodId);
+    emit(ProductState(wasItLiked: wasItLiked));
+  }
+
+  Future<void> addCart() async {
+   await ProductService.instance.addCart(foodId);
+    _goToCartView();
+  }
+
+  Future<void> likeFood() async {
+    final wasItLiked = await ProductService.instance.likeFood(foodId);
+    emit(ProductState(wasItLiked: wasItLiked));
+  }
+
+  void _goToCartView() {
+    NavigationManager.instance
+        .navigationToPage(NavigationConstant.CART);
   }
 }

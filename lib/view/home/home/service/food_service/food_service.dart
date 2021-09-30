@@ -21,7 +21,7 @@ class FoodService implements IFoodService {
 
 
   Future<List<FoodModel>> _getFoodList(String path) async =>
-      await NetworkManager.instance.fetch(path, FoodModel.empty());
+      await NetworkManager.instance.fetch(path,model: FoodModel.empty());
 
   static FoodService get instance {
     _instance ??= FoodService._init();

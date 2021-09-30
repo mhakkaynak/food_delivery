@@ -1,20 +1,8 @@
-
 import '../../../core/base/model/base_model.dart';
 
 class FoodModel extends BaseModel {
-  String id;
-  String deliveryInfo;
-  List<String> imagePaths;
-  String foodName;
-  int numberOfLikes;
-  int price;
-  String returnPolicy;
-  String foodType;
-
   FoodModel(this.deliveryInfo, this.foodName, this.numberOfLikes, this.price,
       this.returnPolicy, this.foodType);
-
-  FoodModel.empty();
 
   FoodModel._fromJson(dynamic o) {
     id = o['_id'].toString();
@@ -26,6 +14,17 @@ class FoodModel extends BaseModel {
     returnPolicy = o['returnPolicy'].toString();
     foodType = o['foodType'];
   }
+
+  FoodModel.empty();
+
+  String deliveryInfo;
+  String foodName;
+  String foodType;
+  String id;
+  List<String> imagePaths;
+  int numberOfLikes;
+  int price;
+  String returnPolicy;
 
   @override
   fromObject(dynamic o) => FoodModel._fromJson(o);

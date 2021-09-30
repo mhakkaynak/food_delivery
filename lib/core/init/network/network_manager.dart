@@ -12,22 +12,23 @@ class NetworkManager extends ICoreDio {
 
   NetworkManager._init();
   @override
-  Future<dynamic> fetch<T extends BaseModel>(
-      String path, T model) async {
+  Future<dynamic> fetch<T extends BaseModel>(String path, {T model}) async {
     try {
       final response = await dio.get(path);
       switch (response.statusCode) {
         case HttpStatus.ok:
           final responseBody = response.data;
-          if (responseBody is List)
+          if (model == null)
+            return responseBody;
+          else if (responseBody is List)
             return responseBody
                 .map((e) => model.fromObject(e))
                 .cast<T>()
                 .toList();
-          else if (responseBody is Map) {
+          else if (responseBody is Map)
             return model.fromObject(responseBody);
-          } else
-            return responseBody;
+          else
+        {    return responseBody;}
           break;
         default:
           // TODO: error
@@ -46,7 +47,7 @@ class NetworkManager extends ICoreDio {
       if (response == null) {
         // TODO error
       }
-      return response;
+      return model.fromObject(response.data); // TODO: eger login kisminda hata olursa burayi degistir.
     } catch (e) {
       // TODO error
     }

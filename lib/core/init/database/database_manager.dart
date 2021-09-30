@@ -7,6 +7,14 @@ import 'base_database_manager.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbManager extends IDbManager {
+  DbManager();
+  static DbManager _instance;
+
+  static DbManager get instance {
+    _instance ??= DbManager();
+    return _instance;
+  }
+
   Database _db;
 
   Future<Database> get db async {
@@ -32,10 +40,13 @@ class DbManager extends IDbManager {
   }
 
   @override
-  Future<UserModel> fetchUser<T extends BaseModel>(T model) async {
+  Future<BaseModel> fetchUser<T extends BaseModel>(T model) async {
     final db = await this.db;
     final result = await db.query('user');
-    return model.fromObject(result[0]);
+    if (result[0] != null)
+      return model
+          .fromObject(result[0]); // TODO: duzenlenmesi lazim null check ile
+    return null;
   }
 
   @override

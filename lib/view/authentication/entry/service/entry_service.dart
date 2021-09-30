@@ -9,7 +9,6 @@ class EntryService extends IEntryService {
   static EntryService _instance;
 
   final _authURl = '/authentication';
-
   @override
   Future<String> login(UserModel user) async {
     try {
@@ -17,10 +16,11 @@ class EntryService extends IEntryService {
           await NetworkManager.instance.post(_authURl + '/login', user);
       if (response != null) {
         UserModel loggedInUser = await user.fromObject(response.data);
-        final result = DbManager().insertUser(loggedInUser);
-        print('result:' + result.toString());
+        await DbManager.instance.insertUser(loggedInUser);
+        return 'Welcome';
         // TODO fetch ile kontrol et
-        // TODO db de kayit islemini yap
+      } else {
+        throw ('Login not successful');
       }
     } catch (e) {
       return e.toString();

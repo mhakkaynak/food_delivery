@@ -1,8 +1,10 @@
 part of 'product_cubit.dart';
 
 class ProductState extends Equatable {
-  const ProductState({this.index});
-  final int index;
+  const ProductState({  this.wasItLiked});
+
+  final bool wasItLiked;
+
   @override
-  List<Object> get props => [this.index];
+  List<Object> get props => [ this.wasItLiked];
 }
