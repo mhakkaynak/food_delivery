@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../model/user_model.dart';
 import '../service/entry_service.dart';
@@ -46,8 +45,13 @@ class _LoginViewState extends State<LoginView> {
           Spacer(flex: 6),
           ElevatedTextButton(
             onPressed: () async {
-              EntryService.instance.login(UserModel.login(
-                  email: 'halilakkaynak71@gmail.com', password: 'Password1*'));
+              final response = await EntryService.instance.login(
+                  UserModel.login(
+                      email: _emailTextController.text,
+                      password: _passwordTextController.text));
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(response)));
+              
             },
             text: 'Login',
           ),

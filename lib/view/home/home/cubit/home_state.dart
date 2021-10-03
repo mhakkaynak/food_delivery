@@ -8,7 +8,7 @@ class HomeState extends Equatable {
 
   @override
   List<Object> get props => [
-        this.foodList,
-        this.tabBarIndex,
+        foodList,
+        tabBarIndex,
       ];
 }

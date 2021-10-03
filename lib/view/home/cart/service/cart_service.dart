@@ -35,9 +35,9 @@ class CartService extends ICartService {
 
   @override
   Future<String> likeFood(String foodId) async {
-    if (await _wasItLiked(foodId))
+    if (await _wasItLiked(foodId)) {
       return 'This food has already been liked';
-    else {
+    } else {
       await NetworkManager.instance
           .fetch('/user/favorite-foods/update/$_userId/$foodId');
       return null;

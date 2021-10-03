@@ -1,4 +1,4 @@
-import 'package:food_delivery/product/constants/enum/payment_enum.dart';
+import '../constants/enum/payment_enum.dart';
 
 extension PaymentMethodExtension on PaymentMethod {
   String get rawValue {

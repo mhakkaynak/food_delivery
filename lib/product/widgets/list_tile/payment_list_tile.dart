@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_delivery/core/extension/context_extension.dart';
+
+import '../../../core/extension/context_extension.dart';
 
 class PaymentListTile extends StatelessWidget {
   const PaymentListTile(

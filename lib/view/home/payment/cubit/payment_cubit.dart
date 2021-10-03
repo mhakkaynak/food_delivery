@@ -39,7 +39,7 @@ class PaymentCubit extends Cubit<PaymentState> {
           totalPrice: _totalPrice));
 
   Future<void> pay(
-      PaymentModel model, VoidCallback messageFun(String text)) async {
+      PaymentModel model, VoidCallback Function(String text) messageFun) async {
     final response = await NetworkManager.instance
         .post('/payment/$_userId', model) as PaymentModel;
     if (response.isSuccess) {
@@ -57,7 +57,7 @@ class PaymentCubit extends Cubit<PaymentState> {
   Future<void> _init() async {
     _userId =
         (await DbManager.instance.fetchUser(UserModel.empty()) as UserModel).id;
-    _getTotalPrice();
+    await _getTotalPrice();
   }
 
   Future<void> _getTotalPrice() async {

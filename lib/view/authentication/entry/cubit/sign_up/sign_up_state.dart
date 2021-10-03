@@ -9,6 +9,6 @@ class SignUpState extends Equatable {
 
   @override
   List<Object> get props => [
-        this.currentStep,
+        currentStep,
       ];
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/view/home/payment/view/payment_view.dart';
+import '../../../view/authentication/splash/splash_view.dart';
+import '../../../view/home/payment/view/payment_view.dart';
+import '../../../view/home/user/view/user_view.dart';
 
 import '../../../view/authentication/entry/view/entry_view.dart';
-import '../../../view/authentication/spalsh/view/spalsh_view.dart';
 import '../../../view/errors/view/error_view.dart';
 import '../../../view/home/cart/view/cart_view.dart';
 import '../../../view/home/home/view/home_view.dart';
@@ -23,8 +24,7 @@ class NavigationRouteManager {
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
       case NavigationConstant.SPLASH:
-        return _navigationToDefault(SpalshView(), args);
-        break;
+              return _navigationToDefault(SplashView(), args);
       case NavigationConstant.LOGIN:
         return _navigationToDefault(EntryView(), args);
       case NavigationConstant.ERROR:
@@ -39,6 +39,8 @@ class NavigationRouteManager {
         return _navigationToDefault(CartView(), args);
       case NavigationConstant.PAYMENT:
         return _navigationToDefault(PaymentView(), args);
+      case NavigationConstant.USER:
+        return _navigationToDefault(UserView(), args);
       default:
         return _navigationToDefault(ErrorView(), args);
     }

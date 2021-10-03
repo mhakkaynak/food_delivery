@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/core/components/color_dot/color_dot.dart';
 
+import 'color_dot.dart';
+
+// ignore: must_be_immutable
 class ColorDotListView extends StatefulWidget {
   ColorDotListView(
       {Key key,

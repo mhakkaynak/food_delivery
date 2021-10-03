@@ -1,14 +1,7 @@
-import 'package:food_delivery/core/base/model/base_model.dart';
+import '../../../../core/base/model/base_model.dart';
 
 class PaymentModel extends BaseModel {
   PaymentModel(this.deliveryMethod, this.paymentMethod);
-
-  PaymentModel.empty();
-
-  String deliveryMethod;
-  String paymentMethod;
-  double totalPrice;
-  bool isSuccess;
 
   PaymentModel._fromJson(dynamic o) {
     deliveryMethod = o['deliveryMethod'].toString();
@@ -17,8 +10,15 @@ class PaymentModel extends BaseModel {
     isSuccess = o['success'].toString() == 'true';
   }
 
+  PaymentModel.empty();
+
+  String deliveryMethod;
+  bool isSuccess;
+  String paymentMethod;
+  double totalPrice;
+
   @override
-  fromObject(json) => PaymentModel._fromJson(json);
+  PaymentModel fromObject(json) => PaymentModel._fromJson(json);
 
   @override
   Map<String, dynamic> toMap() => {

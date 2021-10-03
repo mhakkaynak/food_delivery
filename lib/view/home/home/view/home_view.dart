@@ -8,47 +8,11 @@ import '../../../../product/widgets/card/product_card.dart';
 import '../cubit/home_cubit.dart';
 import '../model/food_types_model.dart';
 
-// TODO:  onTap for product card
 class HomeView extends StatelessWidget {
   HomeView({Key key}) : super(key: key);
 
-  final _searchTextController = TextEditingController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  Widget build(BuildContext context) {
-    _searchTextController.clear();
-    HomeCubit();
-    return Scaffold(
-      key: _scaffoldKey,
-      resizeToAvoidBottomInset: false,
-      appBar: _buildAppBar,
-      body: GestureDetector(
-        onTap: _exitSearchBar,
-        child: Padding(
-          padding: context.paddingLowSymetric,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Delicious\nfood for you',
-                style: context.currentTheme.textTheme.headline4,
-              ),
-              Spacer(),
-              Expanded(
-                flex: 32,
-                child: BlocBuilder<HomeCubit, HomeState>(
-                  builder: (context, state) =>
-                      _buildColumnInsideTheBlocBuilder(context, state),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: _buildBottomNavigationBar(context),
-    );
-  }
+  final _searchTextController = TextEditingController();
 
   Column _buildColumnInsideTheBlocBuilder(
           BuildContext context, HomeState state) =>
@@ -89,33 +53,26 @@ class HomeView extends StatelessWidget {
         )
       ]);
 
-  // TODO: will be held
   BottomNavigationBar _buildBottomNavigationBar(BuildContext context) =>
       BottomNavigationBar(
         elevation: 0,
-        backgroundColor: Colors.black.withOpacity(0.1),
+        backgroundColor: Colors.black.withOpacity(0.0),
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: '',
               backgroundColor: Colors.transparent),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline),
-              label: '',
-              backgroundColor: Colors.transparent),
-          BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
               label: '',
               backgroundColor: Colors.transparent),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: '',
-          ),
         ],
         currentIndex: 0,
         selectedItemColor: context.currentTheme.colorScheme.primary,
         onTap: (index) {
-          print(index);
+          if (index == 1) {
+            context.read<HomeCubit>().goToUserView();
+          }
         },
       );
 
@@ -134,7 +91,6 @@ class HomeView extends StatelessWidget {
                     context
                         .read<HomeCubit>()
                         .goToProductView(state.foodList[index]);
-                        
                   },
                   child: _buildProductCard(state, index)),
             ),
@@ -171,5 +127,40 @@ class HomeView extends StatelessWidget {
   void _exitSearchBar() {
     FocusScope.of(_scaffoldKey.currentContext).requestFocus(new FocusNode());
     _searchTextController.clear();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _searchTextController.clear();
+    HomeCubit();
+    return Scaffold(
+      key: _scaffoldKey,
+      resizeToAvoidBottomInset: false,
+      appBar: _buildAppBar,
+      body: GestureDetector(
+        onTap: _exitSearchBar,
+        child: Padding(
+          padding: context.paddingLowSymetric,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Delicious\nfood for you',
+                style: context.currentTheme.textTheme.headline4,
+              ),
+              Spacer(),
+              Expanded(
+                flex: 32,
+                child: BlocBuilder<HomeCubit, HomeState>(
+                  builder: (context, state) =>
+                      _buildColumnInsideTheBlocBuilder(context, state),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: _buildBottomNavigationBar(context),
+    );
   }
 }

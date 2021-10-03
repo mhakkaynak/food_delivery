@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/view/home/_model/food_model.dart';
-
 import 'base_navigation_manager.dart';
 
 class NavigationManager implements BaseNavigationMAnager {

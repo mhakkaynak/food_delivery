@@ -12,6 +12,7 @@ class AppThemeLight extends AppTheme {
     return _instance;
   }
 
+  @override
   ThemeData get ligthTheme => ThemeData(
         appBarTheme: AppBarTheme(
             backgroundColor: _appColorScheme.background,

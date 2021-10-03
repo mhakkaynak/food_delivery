@@ -8,8 +8,10 @@ class ImagePath {
   final cardIcon = 'card'.toSvg;
   final errorIcon = 'error'.toSvg;
   final doorDeliveryIcon = 'door_delivery'.toSvg;
-  final pickUp = 'pick_up'.toSvg;
+  final pickUpIcon = 'pick_up'.toSvg;
+  final userIcon = 'user'.toSvg;
   final foodDeliveryIcon = 'food_delivery_icon'.toPng;
+  final splashImage = 'splash'.toPng;
 
   static ImagePath _instance;
 

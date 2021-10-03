@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:food_delivery/core/components/color_dot/color_dot_list_view.dart';
+import '../color_dot/color_dot_list_view.dart';
 
 class ScrollingCircleAvatar extends StatefulWidget {
   ScrollingCircleAvatar(

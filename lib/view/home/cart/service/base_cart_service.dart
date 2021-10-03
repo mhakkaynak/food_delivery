@@ -1,5 +1,4 @@
-import 'package:food_delivery/view/home/_model/food_model.dart';
-import 'package:food_delivery/view/home/cart/model/cart_model.dart';
+import '../model/cart_model.dart';
 
 abstract class ICartService {
   Future<List<CartModel>> getCart();

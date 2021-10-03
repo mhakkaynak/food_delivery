@@ -27,7 +27,7 @@ class FoodModel extends BaseModel {
   String returnPolicy;
 
   @override
-  fromObject(dynamic o) => FoodModel._fromJson(o);
+  FoodModel fromObject(dynamic o) => FoodModel._fromJson(o);
 
   @override
   Map<String, dynamic> toMap() => {

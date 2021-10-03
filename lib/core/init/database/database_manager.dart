@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import '../../base/model/base_model.dart';
-import '../../../view/authentication/entry/model/user_model.dart';
 import 'package:path/path.dart';
-import 'base_database_manager.dart';
 import 'package:sqflite/sqflite.dart';
+
+import '../../../view/authentication/entry/model/user_model.dart';
+import '../../base/model/base_model.dart';
+import 'base_database_manager.dart';
 
 class DbManager extends IDbManager {
   DbManager();
@@ -43,9 +44,9 @@ class DbManager extends IDbManager {
   Future<BaseModel> fetchUser<T extends BaseModel>(T model) async {
     final db = await this.db;
     final result = await db.query('user');
-    if (result[0] != null)
-      return model
-          .fromObject(result[0]); // TODO: duzenlenmesi lazim null check ile
+    if (result[0] != null) {
+      return model.fromObject(result[0]);
+    }
     return null;
   }
 

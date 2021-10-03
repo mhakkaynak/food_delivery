@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:food_delivery/view/home/home/service/food_service/food_service.dart';
+import '../service/food_service/food_service.dart';
 
 import '../../../../core/constants/navigation/navigation_constant.dart';
 import '../../../../core/init/navigation/navigation_manager.dart';
@@ -43,6 +43,10 @@ class HomeCubit extends Cubit<HomeState> {
   void goToBackView() {
     NavigationManager.instance.navigationPop();
     _getFoods(index: 0);
+  }
+
+  void goToUserView() {
+    NavigationManager.instance.navigationToPage(NavigationConstant.USER);
   }
 
   Future<void> _getFoods({int index}) async {

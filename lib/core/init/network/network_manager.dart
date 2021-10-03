@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import '../../constants/navigation/navigation_constant.dart';
+import '../navigation/navigation_manager.dart';
+
 import '../../base/model/base_model.dart';
 import 'base_dio_service.dart';
 
@@ -18,24 +21,25 @@ class NetworkManager extends ICoreDio {
       switch (response.statusCode) {
         case HttpStatus.ok:
           final responseBody = response.data;
-          if (model == null)
+          if (model == null) {
             return responseBody;
-          else if (responseBody is List)
+          } else if (responseBody is List) {
             return responseBody
                 .map((e) => model.fromObject(e))
                 .cast<T>()
                 .toList();
-          else if (responseBody is Map)
+          } else if (responseBody is Map) {
             return model.fromObject(responseBody);
-          else
-        {    return responseBody;}
+          } else {
+            return responseBody;
+          }
           break;
         default:
-          // TODO: error
+          _goToErrorView();
           break;
       }
     } catch (e) {
-      // TODO error
+      _goToErrorView();
     }
     return null;
   }
@@ -45,11 +49,14 @@ class NetworkManager extends ICoreDio {
     try {
       final response = await dio.post(path, data: model.toMap());
       if (response == null) {
-        // TODO error
+        _goToErrorView();
       }
-      return model.fromObject(response.data); // TODO: eger login kisminda hata olursa burayi degistir.
+      return model.fromObject(response.data);
     } catch (e) {
-      // TODO error
+      _goToErrorView();
     }
   }
+
+  void _goToErrorView() =>
+      NavigationManager.instance.navigationToPage(NavigationConstant.ERROR);
 }

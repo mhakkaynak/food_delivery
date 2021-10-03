@@ -8,7 +8,7 @@ abstract class ICoreDio {
   Dio dio;
 
   ICoreDio() {
-    String baseUrl = Platform.isIOS
+    var baseUrl = Platform.isIOS
         ? 'http://localhost:4004'
         : 'http://192.168.1.39:4004';
     dio = Dio(BaseOptions(baseUrl: baseUrl));

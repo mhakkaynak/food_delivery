@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery/product/widgets/button/elevated_text_button.dart';
+
 import '../../../../core/extension/context_extension.dart';
+import '../../../../product/widgets/button/elevated_text_button.dart';
 import '../../../../product/widgets/card/slidable_food_card.dart';
 import '../../_model/food_model.dart';
 import '../cubit/cart_cubit.dart';

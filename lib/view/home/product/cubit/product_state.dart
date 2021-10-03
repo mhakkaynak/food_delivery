@@ -6,5 +6,5 @@ class ProductState extends Equatable {
   final bool wasItLiked;
 
   @override
-  List<Object> get props => [ this.wasItLiked];
+  List<Object> get props => [ wasItLiked];
 }

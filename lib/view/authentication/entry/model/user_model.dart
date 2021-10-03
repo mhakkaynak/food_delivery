@@ -41,11 +41,11 @@ class UserModel extends BaseModel {
   }
 
   @override
-  fromObject(dynamic o) => UserModel._fromJson(o);
+  UserModel fromObject(dynamic o) => UserModel._fromJson(o);
 
   @override
   Map<String, dynamic> toMap() {
-    final data = Map<String, dynamic>();
+    final data = <String, dynamic>{};
     data['_id'] = this.id;
     data['name'] = this.name;
     data['surname'] = this.surname;

@@ -70,7 +70,7 @@ class PaymentView extends StatelessWidget {
                 .changeDeliveryMethod(value, state.paymentMethod);
           }),
       iconPath1: ImagePath.instance.doorDeliveryIcon,
-      iconPath2: ImagePath.instance.pickUp,
+      iconPath2: ImagePath.instance.pickUpIcon,
     );
   }
 

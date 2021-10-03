@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/core/components/container/round_edge_container.dart';
-import 'package:food_delivery/product/widgets/list_tile/payment_list_tile.dart';
+import '../../../core/components/container/round_edge_container.dart';
+import '../list_tile/payment_list_tile.dart';
 
 class PaymentCard extends RoundEdgeContainer {
   PaymentCard({

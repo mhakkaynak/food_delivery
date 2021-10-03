@@ -1,7 +1,6 @@
 
-import 'package:food_delivery/core/init/network/network_manager.dart';
-import 'package:food_delivery/view/home/_model/food_model.dart';
-
+import '../../../../../core/init/network/network_manager.dart';
+import '../../../_model/food_model.dart';
 import 'base_food_service.dart';
 
 class FoodService implements IFoodService {

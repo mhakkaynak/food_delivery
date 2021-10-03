@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:food_delivery/core/components/button/counter_button.dart';
-import 'package:food_delivery/core/components/container/round_edge_container.dart';
-import 'package:food_delivery/core/extension/context_extension.dart';
-import 'package:food_delivery/product/widgets/button/circle_button.dart';
-import 'package:food_delivery/view/home/_model/food_model.dart';
+import '../../../core/components/button/counter_button.dart';
+import '../../../core/components/container/round_edge_container.dart';
+import '../../../core/extension/context_extension.dart';
+import '../button/circle_button.dart';
+import '../../../view/home/_model/food_model.dart';
 
 class SlidableFoodCard extends StatelessWidget {
   const SlidableFoodCard(

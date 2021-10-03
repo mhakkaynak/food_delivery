@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery/core/components/text/text_with_single_child_scroll_view.dart';
-import 'package:food_delivery/product/widgets/column/two_text_columns.dart';
+import '../../../../core/components/text/text_with_single_child_scroll_view.dart';
+import '../../../../product/widgets/column/two_text_columns.dart';
 
 import '../../../../core/components/button/custom_elevated_button.dart';
 import '../../../../core/components/circle_avatar/scrolling_circle_avatar.dart';

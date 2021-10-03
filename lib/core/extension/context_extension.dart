@@ -31,7 +31,7 @@ extension MediaQueryExtension on BuildContext {
 extension PaddingExtension on BuildContext {
   EdgeInsets get paddingUltraLowSymetric => EdgeInsets.symmetric(
       horizontal: lowWidthValue / 2,
-      vertical: lowHeightValue / 2); // TODO: height silinebilinir
+      vertical: lowHeightValue / 2); 
 
   EdgeInsets get paddingLowSymetric => EdgeInsets.symmetric(
       horizontal: lowWidthValue, vertical: customHeigthValue(0.03));

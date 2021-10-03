@@ -174,7 +174,7 @@ class _SignUpViewState extends State<SignUpView> {
     if (!RegExp(
             r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{6,12}$')
         .hasMatch(value)) {
-      return '\tPassword must be between 6-12 characters,\n at least one  at least ' +
+      return '\tPassword must be between 6-12 characters,\n at least one  at least '
           'none lowercase letter,\n at least one number and at least one special character.';
     } else if (_passwordTextController.text.isNotEmpty &&
         (_passwordTextController.text != _passwordTextController2.text)) {
@@ -182,8 +182,9 @@ class _SignUpViewState extends State<SignUpView> {
     } else if (_passwordTextController2.text.isNotEmpty) {
       _isPasswordStepActive = context.read<SignUpCubit>().setStepActive(2);
       return null;
-    } else
+    } else {
       return null;
+    }
   }
 
   String _addressValidator(String value) {
@@ -218,10 +219,11 @@ class _SignUpViewState extends State<SignUpView> {
     if (_isNameStepActive &&
         _isEmailStepActive &&
         _isPasswordStepActive &&
-        _isContactInformationStepActive)
+        _isContactInformationStepActive) {
       return true;
-    else
+    } else {
       return false;
+    }
   }
 
   UserModel get _userModel => UserModel.signUp(

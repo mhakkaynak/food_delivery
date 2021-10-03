@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:food_delivery/core/constants/navigation/navigation_constant.dart';
-import 'package:food_delivery/core/init/navigation/navigation_manager.dart';
-import 'package:food_delivery/view/home/product/service/product_service.dart';
+import '../../../../core/constants/navigation/navigation_constant.dart';
+import '../../../../core/init/navigation/navigation_manager.dart';
+import '../service/product_service.dart';
 
 part 'product_state.dart';
 
